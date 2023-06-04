@@ -1,6 +1,3 @@
 selenium
 webdriver_manager
-libglib
-libnss3
-libgconf-2-4
-libfontconfig1
+
