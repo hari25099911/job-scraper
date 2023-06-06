@@ -19,7 +19,7 @@ options.add_argument('--disable-gpu')
 options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--no-sandbox')
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-service_obj = Service("./chromedriver.exe")
+service_obj = Service("chromedriver.exe")
 driver = webdriver.Chrome(service=service_obj, options=options)
 # driver = webdriver.Chrome(executable_path="./chromedriver.exe", options=options)
 
