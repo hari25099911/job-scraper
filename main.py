@@ -15,7 +15,8 @@ driver = get_driver()
 print()
 print("<<......Job-Scraper......>>")
 print()
-job_role = str(input('enter job role: '))
+st.title('Trends in Data jobs')
+job_role = st.selectbox('Select a job role?', ("Data Engineer", "Data Analyst", "Data Architect", "Data Scientist", "Machine Learning Engineer"))
 lst = job_role.split(' ')
 str = ""
 c = 0
@@ -33,7 +34,7 @@ count = 0
 print()
 print('starting to scrape............. ')
 print()
-while count < 500:
+while count < 50:
     elements = driver.find_elements(By.XPATH, "/html/body/div[@id='srpThemeDefault']/div[@class='srpContainer']/div[@id='srpContent']/div[@class='srpCardContainer']/div[@class='srpResultCard']/div")
     for element in elements:
         try:
@@ -44,7 +45,8 @@ while count < 500:
                 skills.remove("")
             sub_element = element.find_element(By.CLASS_NAME, "cardBody")
             job_type = sub_element.find_element(By.XPATH, "div[1]/div[@class='details']").text
-            location = sub_element.find_element(By.XPATH, "div[2]/div[@class='details']").text   
+            location = sub_element.find_element(By.XPATH, "div[2]/div[@class='details']").text  
+            st.write(job_title, company_name, skills, job_type, location)
             print(job_title, company_name, skills, job_type, location)
             count += 1
         except:
