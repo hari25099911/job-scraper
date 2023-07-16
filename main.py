@@ -32,8 +32,8 @@ for i in lst:
     else:
         str+='+'+i
         c+=1
-# page = f'https://www.foundit.in/srp/results?query="{str}"'
-page = f'www.foundit.in/srp/results?query="{str}"'
+page = f'https://www.foundit.in/srp/results?query="{str}"'
+# page = f'www.foundit.in/srp/results?query="{str}"'
 page = page.encode('ascii', 'ignore').decode('unicode_escape')
 driver.get(page)
 count = 0
