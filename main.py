@@ -151,12 +151,13 @@ st.markdown("---")
 left_column, right_column = st.columns(2)
 
 # plotting chart and map objects one by one
-left_column.plotly_chart(cmp_fig, use_container_width=True)
-right_column.plotly_chart(skl_fig, use_container_width=True)
-left_column.plotly_chart(loc_fig, use_container_width=True)
-right_column.plotly_chart(map, use_container_width=True)
-left_column.plotly_chart(jty_fig, use_container_width=True)
-right_column.plotly_chart(exp_fig, use_container_width=True)
+config = {'displayModeBar': False}
+left_column.plotly_chart(cmp_fig, use_container_width=True, config=config)
+right_column.plotly_chart(skl_fig, use_container_width=True, config=config)
+left_column.plotly_chart(loc_fig, use_container_width=True, config=config)
+right_column.plotly_chart(map, use_container_width=True, config=config)
+left_column.plotly_chart(jty_fig, use_container_width=True, config=config)
+right_column.plotly_chart(exp_fig, use_container_width=True, config=config)
 
 hide_st_style = """
             <style>
