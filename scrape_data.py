@@ -13,19 +13,20 @@ options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')  
 options.add_argument('--disable-dev-shm-usage')
-driver = get_driver()
 
 # function to get all the states in india by scraping knowindia.india.gov.in site
 def get_states_indian():
     states = []
     page = 'https://knowindia.india.gov.in/states-uts/'
     url = page.encode('ascii', 'ignore').decode('unicode_escape')
+    driver = get_driver()
     driver.get(url)
     elements = driver.find_elements(By.XPATH,"/html/body/div[1]/div[2]/section[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[@class='page-menu']")
     for e in elements:
         for i in e.find_elements(By.TAG_NAME, 'a'):
             state = i.text.split('\n')[0]
             states.append(state.strip().lower())
+    driver.quit()
     return states
 
 # function to get all the countries by scraping country.io site
@@ -33,11 +34,13 @@ def get_countries():
     countries = []
     page = 'http://country.io/countries/'
     url = page.encode('ascii', 'ignore').decode('unicode_escape')
+    driver = get_driver()
     driver.get(url)
     elmement = driver.find_element(By.XPATH, "/html/body/section[1]/div[1]/div[1]")
     lst = elmement.find_elements(By.TAG_NAME, 'a')
     for i in lst:
         countries.append(i.text.strip().lower())
+    driver.quit()
     return countries
 
 try:
@@ -117,6 +120,7 @@ def get_job_details(job_role : str):
     str_query = "+".join(lst)
     page = f'https://www.foundit.in/srp/results?query="{str_query}"'
     url = page.encode('ascii', 'ignore').decode('unicode_escape')
+    driver = get_driver()
     driver.get(url)
     count = 0
     while count <= 100:
