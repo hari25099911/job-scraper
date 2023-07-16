@@ -98,7 +98,7 @@ def parse_job_type(job_type_str):
         type_lst.append('part time')
     return type_lst
 
-# function to experience string passed and returns required experience integer value
+# function to parse experience string passed and returns required experience integer value
 def parse_experience(experience_str):
     if '-' in experience_str:
         lst = [int(i) for i in experience_str.split(' ')[0].split('-')]
