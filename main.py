@@ -5,8 +5,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 import streamlit as st
 from selenium.webdriver.common.by import By
 
-# @st.experimental_singleton
-# @st.cache_resource
 def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 options = Options()
@@ -16,9 +14,6 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 driver = get_driver()
 
-print()
-print("<<......Job-Scraper......>>")
-print()
 st.title('Trends in Data jobs')
 job_role = st.selectbox('Select a job role?', ("Data Engineer", "Data Analyst", "Data Architect", "Data Scientist", "Machine Learning Engineer"))
 lst = job_role.split(' ')
@@ -33,13 +28,9 @@ for i in lst:
         str+='+'+i
         c+=1
 page = f'https://www.foundit.in/srp/results?query="{str}"'
-# page = f'www.foundit.in/srp/results?query="{str}"'
 page = page.encode('ascii', 'ignore').decode('unicode_escape')
 driver.get(page)
 count = 0
-print()
-print('starting to scrape............. ')
-print()
 while count < 50:
     elements = driver.find_elements(By.XPATH, "/html/body/div[@id='srpThemeDefault']/div[@class='srpContainer']/div[@id='srpContent']/div[@class='srpCardContainer']/div[@class='srpResultCard']/div")
     for element in elements:
@@ -53,22 +44,10 @@ while count < 50:
             job_type = sub_element.find_element(By.XPATH, "div[1]/div[@class='details']").text
             location = sub_element.find_element(By.XPATH, "div[2]/div[@class='details']").text  
             st.write(job_title, company_name, skills, job_type, location)
-            print(job_title, company_name, skills, job_type, location)
             count += 1
         except:
             pass
     try:
         element.find_element(By.CLASS_NAME, "mqfisrp-right-arrow").click()
-        print()
-        print("Navigating to Next Page") 
-        print()
     except :
-        print()
-        print("Reached Last Page")
-        print()
         break
-# driver.quit()
-print('count:',count)
-print()
-print('scraping ends............. ')
-print()
