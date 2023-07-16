@@ -67,7 +67,7 @@ while count < 50:
         print("Reached Last Page")
         print()
         break
-driver.quit()
+# driver.quit()
 print('count:',count)
 print()
 print('scraping ends............. ')
