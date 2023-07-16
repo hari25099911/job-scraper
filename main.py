@@ -5,7 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import streamlit as st
 from selenium.webdriver.common.by import By
 
-@st.experimental_singleton
+# @st.experimental_singleton
 def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 options = Options()
