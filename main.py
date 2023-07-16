@@ -28,7 +28,8 @@ for i in lst:
     else:
         str+='+'+i
         c+=1
-page = f'https://www.foundit.in/srp/results?query="{str}"'
+# page = f'https://www.foundit.in/srp/results?query="{str}"'
+page = f'www.foundit.in/srp/results?query="{str}"'
 driver.get(page)
 count = 0
 print()
