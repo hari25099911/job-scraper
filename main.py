@@ -54,10 +54,19 @@ with st.spinner('Web-scraping in progress, please wait for few seconds ...'):
                 locations = ['india'], 
                 locationmode = 'country names', 
                 z=[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0]) 
-    map = gobj.Figure(data = [data])
-    map.update_geos(fitbounds='locations', visible=False)
-    map.update_traces(showscale=False, hoverinfo="text")
-    map.add_trace(go.Scattergeo(
+    map = gobj.Figure(
+        data = [data]
+    )
+    map.update_geos(
+        fitbounds='locations', 
+        visible=False
+    )
+    map.update_traces(
+        showscale=False, 
+        hoverinfo="text"
+    )
+    map.add_trace(
+        go.Scattergeo(
                 lon = loc_df['longitude'],
                 lat = loc_df['latitude'],
                 text = loc_df['cities'],
@@ -65,9 +74,15 @@ with st.spinner('Web-scraping in progress, please wait for few seconds ...'):
                 marker = dict(
                     size = loc_df['percent']+5,
                     color = '#0083B8'
-                ), hoverlabel=dict(namelength=0)))
+                ), 
+            hoverlabel=dict(namelength=0)
+        )
+    )
     map.update_layout(
-        plot_bgcolor="rgba(0,0,0,0)")
+        plot_bgcolor="rgba(0,0,0,0)", 
+        dragmode=False
+    )
+    map['layout'].update(autosize = True)
 
     # company barchart object 
     cmp_fig = px.bar(cmp_df, 
@@ -79,7 +94,8 @@ with st.spinner('Web-scraping in progress, please wait for few seconds ...'):
     cmp_fig.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis=(dict(showgrid=False)),
-        yaxis=dict(autorange="reversed")
+        yaxis=dict(autorange="reversed"),
+        dragmode=False
     )
 
     # skills barchart object
@@ -92,7 +108,8 @@ with st.spinner('Web-scraping in progress, please wait for few seconds ...'):
     skl_fig.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis=(dict(showgrid=False)),
-        yaxis=(dict(showgrid=False))
+        yaxis=(dict(showgrid=False)),
+        dragmode=False
     )
 
     # location barchart object
@@ -105,20 +122,27 @@ with st.spinner('Web-scraping in progress, please wait for few seconds ...'):
     loc_fig.update_layout(
         plot_bgcolor="rgba(0,0,0,0)",
         xaxis=(dict(showgrid=False)),
-        yaxis=(dict(showgrid=False))
+        yaxis=(dict(showgrid=False)),
+        dragmode=False
     )
 
     # experience level pie chart object
     names = exp_df['job level']
     values = exp_df['count']
     exp_fig = px.pie(exp_df, values=values, names=names, title='Job level - ratio')
-    exp_fig.update_layout(plot_bgcolor="rgba(0,0,0,0)")
+    exp_fig.update_layout(
+        plot_bgcolor="rgba(0,0,0,0)",
+        dragmode=False
+    )
 
     # job-type pie chart object
     names = jty_df['job type']
     values = jty_df['count']
     jty_fig = px.pie(jty_df, values=values, names=names, title='Job type - ratio')
-    jty_fig.update_layout(plot_bgcolor="rgba(0,0,0,0)")
+    jty_fig.update_layout(
+        plot_bgcolor="rgba(0,0,0,0)",
+        dragmode=False
+    )
 
 # plot chart and map objects
 st.markdown("---")
