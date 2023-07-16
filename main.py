@@ -11,7 +11,6 @@ def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 options = Options()
 options.add_argument('--headless')
-options.add_argument(f'user-agent={user_agent}')
 options.add_argument("--window-size=1920,1080")
 options.add_argument('--allow-running-insecure-content')
 options.add_argument('--ignore-certificate-errors')
